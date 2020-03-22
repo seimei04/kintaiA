@@ -64,3 +64,5 @@ class AttendancesController < ApplicationController
       end
     end
 end
+
+
