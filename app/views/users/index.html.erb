@@ -1,5 +1,49 @@
-<% provide(:ttle, 'All Users') %>
+<% provide(:title, 'All Users') %>
 <h1>ユーザー一覧</h1>
+
+<input type="file" name="ファイルを選択" >
+
+<%= link_to "CSVをインポート", "#", class: "btn btn-primary" %><br>
+<% @users.each do |user| %>
+  <br><%= user.name %><br>
+  <% if current_user.admin? && !current_user?(user) %>
+    <%= link_to "削　除", user, method: :delete,
+      data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %><br>
+      
+    <!--<= link_to "編集", edit_basic_info_user_path(user), remote: true, class: "btn btn-primary" %><br>-->
+ 
+
+  
+  
+      <div class="panel panel-default collaps">
+        <a href="#link<%=user.id%>" data-toggle="collapse" class="btn btn-primary">編　集</a>
+        <!--<a href="#link<=user.id%>" data-toggle="collapse" class="btn btn-primary">編　集</a>-->
+      </div>
+      <div id="link<%=user.id%>" class="collapse">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <%= render 'user_form' %>
+          </div>
+        </div>
+      </div>
+ 
+
+
+   
+   
+  <% end %>
+<% end %>
+
+
+<!--これより下は必要ない
+--
+--
+--
+--
+--
+--
+-->
+
 
 <%= search_form_for @q do |f| %>
     <%= f.label :name_cont %>
