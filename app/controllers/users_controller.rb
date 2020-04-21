@@ -6,11 +6,10 @@ class UsersController < ApplicationController
   before_action :set_one_month, only: :show
   
   def index
-     #@user = User.new#追加してみた4月12日
-     @user=User.all
-     #@User = User.all
-     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).paginate(page: params[:page])
+     @users = User.all#追加してみた4月12日
+  
+    #@q = User.ransack(params[:q])
+   # @users = @q.result(distinct: true).paginate(page: params[:page])
    # @users = @users.paginate(page: params[:page])
  
   end
@@ -56,7 +55,7 @@ class UsersController < ApplicationController
   end
   
   def update_basic_info
-    if @user.update_attributes(basic_info_params)
+    if @user.update_attributes(basic_info_params) 
       flash[:success] = "#{@user.name}の基本情報を更新しました。"
 
     else
@@ -68,11 +67,11 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:name, :email, :department, :password, :password_confirmation, :employee_number,  :uid)
+      params.require(:user).permit(:name, :email, :department, :password, :password_confirmation, :employee_number, :uid)
     end
     
     def basic_info_params
-      params.require(:user).permit(:department, :basic_time, :work_time ,:designated_work_start_time, :designated_work_end_time)
+      params.require(:user).permit(:name, :email, :department, :password, :password_confirmation, :employee_number, :uid ,:department, :basic_time, :work_time ,:designated_work_start_time, :designated_work_end_time)
     end
     
     def user_search_params
