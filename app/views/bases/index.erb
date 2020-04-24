@@ -1,0 +1,28 @@
+<% provide(:title, 'Index') %>
+<h1>拠点一覧</h1>
+<div>
+  <table class="table table-bordered table-condensed" id="table-attendances">
+    <thead> 
+      <tr>
+        <th></th>
+        <th></th>
+        <th>拠点番号</th>
+        <th>拠点名</th>
+        <th>拠点種類</th>
+      </tr>
+    
+      <% @bases.each do |base| %>
+      <tr>
+        <th> 修　正</th>
+        <th><%= link_to "削　除","/bases/#{base.base_id}", method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %><br></th>
+            
+        
+        <th><%= base.base_id%></th>
+        <th><%= base.base_name %></th>
+        <th><%= base.base_type %></th>
+      </tr>
+      <% end %>
+    </thead>
+  </table>
+  <h4>拠点情報追加</h1>
+</div>
