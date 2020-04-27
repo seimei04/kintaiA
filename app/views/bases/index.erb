@@ -1,4 +1,6 @@
 <% provide(:title, 'Index') %>
+<% provide(:button_text, '更  新') %>
+<% provide(:class_text, 'base_form') %>
 <h1>拠点一覧</h1>
 <div>
   <table class="table table-bordered table-condensed" id="table-attendances">
@@ -13,16 +15,28 @@
     
       <% @bases.each do |base| %>
       <tr>
-        <th> 修　正</th>
-        <th><%= link_to "削　除","/bases/#{base.base_id}", method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %><br></th>
-            
-        
-        <th><%= base.base_id%></th>
+        <th><!-- 修正画面ボタンここから-->
+          <div class="panel panel-default collaps">
+            <a href="#collapse<%=base.id%>" data-toggle="collapse" class="btn btn-primary">編　集</a>
+        <!--<a href="#link<=user.id%>" data-toggle="collapse" class="btn btn-primary">編　集</a>-->
+          </div>
+          <div id="collapse<%=base.id%>" class="collapse">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <%= render 'base_form', { base: base }%>
+              </div>
+            </div>
+          </div>
+          
+        </th><!-- 修正画面ボタンここまで-->
+        <th><%= link_to "削　除","/bases/#{base.id}", method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %><br></th>
+        <th><%= base.id%></th>
         <th><%= base.base_name %></th>
         <th><%= base.base_type %></th>
       </tr>
       <% end %>
     </thead>
   </table>
-  <h4>拠点情報追加</h1>
+  <%= link_to "拠点情報追加", new_basis_path, class: "btn btn-primary" %>
+ 
 </div>

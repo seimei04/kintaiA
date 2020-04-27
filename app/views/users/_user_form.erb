@@ -1,5 +1,4 @@
 <!--ユーザ一覧のフォーム-->
-
  
   <%= form_with(model: user, url: update_basic_info_user_url(user.id), local: true) do |f| %>
   <!-- render 'shared/error_messages', object: user %>-->
@@ -33,5 +32,5 @@
   <%= f.datetime_field :designated_work_end_time, class: "form-control" %>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
-  
+  <!--= f.submit "更　新", class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>-->
 <% end %>

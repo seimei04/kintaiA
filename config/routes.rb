@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   
+   #　Baseモデル
+  resources :bases, except: [ :edit, :show]
+  #get 'bases', to: 'bases#index'
+  #patch 'bases/:id', to: 'bases#update'
+  #delete 'bases/:id', to: 'bases#destroy'
+  
   resources :users do
     member do
       get 'edit_basic_info'
@@ -16,11 +22,11 @@ Rails.application.routes.draw do
       patch 'attendances/update_one_month'
       get 'attend_index'
     end
+    collection { post :import }
     resources :attendances, only: :update
   end
-  get 'bases/new'
-  get 'bases', to: 'bases#index'
-  delete 'bases/:id', to: 'bases#destroy'
+ 
+  
 
 end
 

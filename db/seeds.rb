@@ -32,7 +32,8 @@ end
   id = "#{n+1}"
   name = "拠点#{n+1}"
   type = "退勤"
-  Base.create!(base_id: id,
+  Base.create!(
+               id: id,
                base_name: name,
                base_type: type)
 end

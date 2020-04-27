@@ -3,7 +3,7 @@ class CreateBases < ActiveRecord::Migration[5.1]
     create_table :bases do |t|
       t.string :base_name
       t.string :base_type
-      t.integer :base_id
+      
       
       t.timestamps
     end

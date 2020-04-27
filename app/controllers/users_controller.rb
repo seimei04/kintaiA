@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  protect_from_forgery
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :correct_user, only: [:edit, :show, :update]
@@ -11,7 +12,12 @@ class UsersController < ApplicationController
     #@q = User.ransack(params[:q])
    # @users = @q.result(distinct: true).paginate(page: params[:page])
    # @users = @users.paginate(page: params[:page])
- 
+  end
+  
+  def import
+    # fileは自動で一時保存される
+    User.import(params[:file])
+    redirect_to users_url
   end
   
   def show

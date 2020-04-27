@@ -1,11 +1,13 @@
 <% provide(:title, 'All Users') %>
-<% provide(:button_text, '更新') %>
+<% provide(:button_text, '更 新') %>
 <% provide(:class_text, 'user_form') %>
 <h1>ユーザー一覧</h1>
 
-<input type="file" name="ファイルを選択" >
+<%= form_tag import_users_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "CSVをインポート" %>
+<% end %>
 
-<%= link_to "CSVをインポート", "#", class: "btn btn-primary" %><br>
 <% @users.each do |user| %>
   <br><%= user.name %><br>
   <% if current_user.admin? && !current_user?(user) %>
